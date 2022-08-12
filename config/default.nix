@@ -6,6 +6,7 @@
   imports = [
     ./cli.nix
     ./fonts.nix
+    ./neovim
   ];
 
   programs = {
