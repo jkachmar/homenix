@@ -7,6 +7,9 @@
     ./cli.nix
     ./fonts.nix
     ./neovim
+    ./nix
+    ./nixpkgs
+    ./vscode
   ];
 
   programs = {
