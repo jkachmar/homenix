@@ -14,12 +14,24 @@
   outputs = {
     macosPkgs,
     macosHome,
+    unstablePkgs,
     ...
-  }: {
+  }: let
+    # Utility function to construct a package set based on the given system
+    # along with the shared `nixpkgs` configuration defined in this repo.
+    mkPkgsFor = system: pkgset:
+      import pkgset {
+        inherit system;
+        config = import ./config/nixpkgs/config.nix;
+      };
+  in {
     homeConfigurations = {
       manhattan-transfer = macosHome.lib.homeManagerConfiguration rec {
         system = "aarch64-darwin";
-        pkgs = macosPkgs.legacyPackages."${system}";
+        pkgs = mkPkgsFor system macosPkgs;
+        extraModules = [
+          {_module.args.unstable = mkPkgsFor system unstablePkgs;}
+        ];
 
         # NOTE: This changes pretty drastically in 22.11;
         username = "jkachmar";
