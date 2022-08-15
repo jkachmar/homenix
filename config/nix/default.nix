@@ -1,4 +1,9 @@
-{inputs, lib, pkgs, ...}: let
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) optionals;
   inherit (pkgs.stdenv.targetPlatform) isDarwin isLinux;
 
@@ -15,12 +20,14 @@
 in {
   home.sessionVariables = {
     NIX_PATH = lib.concatStringsSep ":" ([
-      "unstable=${inputs.unstablePkgs}"
-    ] ++ optionals isDarwin [
-      "nixpkgs=${inputs.macosPkgs}"
-    ] ++ optionals isLinux [
-      "nixpkgs=${inputs.nixosPkgs}"
-    ]);
+        "unstable=${inputs.unstablePkgs}"
+      ]
+      ++ optionals isDarwin [
+        "nixpkgs=${inputs.macosPkgs}"
+      ]
+      ++ optionals isLinux [
+        "nixpkgs=${inputs.nixosPkgs}"
+      ]);
   };
   xdg.configFile."nix/nix.conf".text = ''
     build-users-group = nixbld
