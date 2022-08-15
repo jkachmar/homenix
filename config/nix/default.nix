@@ -1,4 +1,7 @@
-{lib, pkgs, unstable, ...}: let
+{inputs, lib, pkgs, ...}: let
+  inherit (lib) optionals;
+  inherit (pkgs.stdenv.targetPlatform) isDarwin isLinux;
+
   # TODO: Abstract this out into its own module.
   caches = [
     # NixOS default cache.
@@ -11,10 +14,13 @@
   trustedPublicKeys = builtins.map (cache: cache.key) caches;
 in {
   home.sessionVariables = {
-    NIX_PATH = lib.concatStringsSep ":" [
-      "nixpkgs=${pkgs.path}"
-      "unstable=${unstable.path}"
-    ];
+    NIX_PATH = lib.concatStringsSep ":" ([
+      "unstable=${inputs.unstablePkgs}"
+    ] ++ optionals isDarwin [
+      "nixpkgs=${inputs.macosPkgs}"
+    ] ++ optionals isLinux [
+      "nixpkgs=${inputs.nixosPkgs}"
+    ]);
   };
   xdg.configFile."nix/nix.conf".text = ''
     build-users-group = nixbld

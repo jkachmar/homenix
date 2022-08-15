@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
     macosPkgs,
     macosHome,
     unstablePkgs,
@@ -30,7 +30,10 @@
         system = "aarch64-darwin";
         pkgs = mkPkgsFor system macosPkgs;
         extraModules = [
-          {_module.args.unstable = mkPkgsFor system unstablePkgs;}
+          {
+            _module.args.inputs = inputs;
+            _module.args.unstable = mkPkgsFor system unstablePkgs;
+          }
         ];
 
         # NOTE: This changes pretty drastically in 22.11;
