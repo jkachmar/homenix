@@ -20,7 +20,7 @@ in {
   programs.vscode = {
     enable = true;
     package = unstable.vscode;
-    # extensions = unstable.callPackage ./extensions.nix {};
+    extensions = unstable.callPackage ./extensions.nix {};
   };
 
   home.file."${configFilePath}".source =
