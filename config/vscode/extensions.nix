@@ -28,15 +28,6 @@ let
     };
   };
 
-  rust-lang.rust-analyzer = buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "rust-analyzer";
-      publisher = "rust-lang";
-      version = "0.4.1169";
-      sha256 = "LGwhcdBs9G1woyDEC1i0zMCglhgrXN+3Ou5sX6ePUlk=";
-    };
-  };
-
   tamasfe.even-better-toml = buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "even-better-toml";
@@ -58,7 +49,6 @@ in
   [
     kahole.magit
     ms-vscode-remote.remote-ssh
-    rust-lang.rust-analyzer
     tamasfe.even-better-toml
     trond-snekvik.simple-rst
   ]
