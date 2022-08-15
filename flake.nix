@@ -66,7 +66,7 @@
 
         # NOTE: This changes pretty drastically in 22.11;
         username = "jkachmar";
-        homeDirectory = "/Users/jkachmar";
+        homeDirectory = "/home/jkachmar";
         stateVersion = "22.05";
         configuration.imports = [./hosts/highway-star];
       };
