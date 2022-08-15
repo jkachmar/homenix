@@ -1,6 +1,5 @@
 {...}: {
   imports = [
     ../../config
-    ../../config/vscode
   ];
 }
