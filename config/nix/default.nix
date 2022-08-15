@@ -1,4 +1,4 @@
-{lib, ...}: let
+{lib, pkgs, unstable, ...}: let
   # TODO: Abstract this out into its own module.
   caches = [
     # NixOS default cache.
@@ -10,6 +10,12 @@
   substituters = builtins.map (cache: cache.url) caches;
   trustedPublicKeys = builtins.map (cache: cache.key) caches;
 in {
+  home.sessionVariables = {
+    NIX_PATH = lib.concatStringsSep ":" [
+      "nixpkgs=${pkgs.path}"
+      "unstable=${unstable.path}"
+    ];
+  };
   xdg.configFile."nix/nix.conf".text = ''
     build-users-group = nixbld
     experimental-features = nix-command flakes
