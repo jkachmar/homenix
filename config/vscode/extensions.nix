@@ -19,6 +19,15 @@ let
     };
   };
 
+  ms-vscode-remote.remote-ssh = buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "remote-ssh";
+      publisher = "ms-vscode-remote";
+      version = "0.85.2022071315";
+      sha256 = "kcqN8Ym1cyTT+P8h0nTq1j/GroMWOI4iPeLwvbkQrKQ=";
+    };
+  };
+
   rust-lang.rust-analyzer = buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "rust-analyzer";
@@ -48,6 +57,7 @@ let
 in
   [
     kahole.magit
+    ms-vscode-remote.remote-ssh
     rust-lang.rust-analyzer
     tamasfe.even-better-toml
     trond-snekvik.simple-rst
