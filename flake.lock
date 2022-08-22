@@ -23,11 +23,11 @@
     },
     "macosPkgs": {
       "locked": {
-        "lastModified": 1660550832,
-        "narHash": "sha256-k2bo7kS58YAE+hfuOYsfk49T/okvDRqH1XRO2wDUNiI=",
+        "lastModified": 1661094678,
+        "narHash": "sha256-RtaVb6SqfrgCi20gdju1ogS3u1ocyLnhsgolazrCwL0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5cc1c4438ae75888aa5f80ba125273f07ec07b76",
+        "rev": "23534df34c1c499a6c82ce690df06d8c6e4e759d",
         "type": "github"
       },
       "original": {
