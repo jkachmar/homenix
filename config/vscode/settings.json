@@ -4,4 +4,5 @@
     "editor.fontSize": 13,
     "terminal.integrated.fontFamily": "JetBrains Mono",
     "terminal.integrated.fontSize": 13,
+    "update.mode": "none", // let Nix handle updates
 }
