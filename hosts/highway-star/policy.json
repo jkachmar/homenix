@@ -1,0 +1,11 @@
+{
+    "default": [{"type": "reject"}],
+    "transports": {
+        "docker": {
+            "docker.io/metabase/metabase": [{"type": "insecureAcceptAnything"}]
+        },
+        "dir": {
+            "": [{"type": "insecureAcceptAnything"}]
+        }
+    }
+}
