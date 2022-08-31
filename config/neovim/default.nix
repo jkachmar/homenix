@@ -7,8 +7,10 @@
   inherit (config.lib.file) mkOutOfStoreSymlink;
   myPlugins = pkgs.callPackage ./plugins.nix {};
 in {
-  # NOTE: Not that formatter, though; takes forever to comiple.
-  # # Lua needs a formatter.
+  # Lua needs a formatter.
+  #
+  # NOTE: Not this formatter, though; takes forever to compile.
+  #
   # home.packages = with pkgs; [ luaformatter ];
   programs.neovim = {
     enable = true;
