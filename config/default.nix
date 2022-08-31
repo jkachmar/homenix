@@ -10,7 +10,7 @@
     ./nixpkgs
   ];
 
-  home.packages = [ pkgs.starship ];
+  home.packages = [pkgs.starship];
   programs = {
     # Allow 'home-manager' to manage its own install.
     home-manager.enable = true;
