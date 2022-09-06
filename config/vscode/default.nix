@@ -5,6 +5,7 @@
   config,
   pkgs,
   unstable,
+  trunk,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -19,7 +20,7 @@
 in {
   programs.vscode = {
     enable = true;
-    package = unstable.vscode;
+    package = trunk.vscode;
     extensions = unstable.callPackage ./extensions.nix {};
   };
 

@@ -20,6 +20,7 @@
 in {
   home.sessionVariables = {
     NIX_PATH = lib.concatStringsSep ":" ([
+        "trunk=${inputs.trunkPkgs}"
         "unstable=${inputs.unstablePkgs}"
       ]
       ++ optionals isDarwin [

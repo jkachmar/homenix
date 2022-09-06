@@ -80,7 +80,24 @@
         "macosPkgs": "macosPkgs",
         "nixosHome": "nixosHome",
         "nixosPkgs": "nixosPkgs",
+        "trunkPkgs": "trunkPkgs",
         "unstablePkgs": "unstablePkgs"
+      }
+    },
+    "trunkPkgs": {
+      "locked": {
+        "lastModified": 1662472087,
+        "narHash": "sha256-NyNB8QXJEdqAD9VfKt4KiwnLHMjtaUR8ihras4oDMO0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "28fbee01ae8672a93c8ae36a4e05ad0803c91bd8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "unstablePkgs": {
