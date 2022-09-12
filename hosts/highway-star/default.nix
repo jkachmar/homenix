@@ -5,6 +5,11 @@ in {
     ../../config
   ];
 
+  # NOTE: True color detectio needs to be forced when editing over SSH.
+  #
+  # cf. https://github.com/helix-editor/helix/issues/2292#issuecomment-1110179773
+  programs.helix.settings.editor.true-color = true;
+
   xdg.configFile = {
     "containers/policy.json".source =
       mkOutOfStoreSymlink
