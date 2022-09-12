@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  unstable,
   ...
 }: {
   imports = [
@@ -10,7 +11,12 @@
     ./nixpkgs
   ];
 
-  home.packages = [pkgs.starship];
+  home.packages =
+    (with pkgs; [
+      starship # XXX: unclear why it's necessary to manually install this...
+    ])
+    ++ (with unstable; []);
+
   programs = {
     # Allow 'home-manager' to manage its own install.
     home-manager.enable = true;
@@ -51,6 +57,19 @@
         pull.rebase = true;
         push.default = "simple";
         rerere.enabled = true;
+      };
+    };
+
+    helix = {
+      enable = true;
+      package = unstable.helix;
+      settings = {
+        theme = "gruvbox_light";
+        editor.cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
       };
     };
 
