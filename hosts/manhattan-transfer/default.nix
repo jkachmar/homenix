@@ -1,9 +1,36 @@
-{...}: {
+{config, ...}: let
+  sshConfigDir = "${config.home.homeDirectory}/.ssh";
+  matchFile = "${sshConfigDir}/config.match";
+  workFile = "${sshConfigDir}/config.work";
+in {
   imports = [
     ../../config
     ../../config/fonts.nix
     ../../config/vscode
   ];
+
+  # XXX: Partial workaround for https://github.com/nix-community/home-manager/issues/2769
+  home.file."${matchFile}".text = ''
+    Include ${workFile}
+  '';
+  programs.ssh.extraOptionOverrides."Include" = matchFile;
+
+  # NOTE: No explicit SSH configuration necessary on non-macOS machines.
+  # TODO: Evaluate whether this is worth factoring out into a separate
+  # config module anyway.
+  programs.ssh = {
+    enable = true;
+    userKnownHostsFile = "${sshConfigDir}/known_hosts";
+    matchBlocks = {
+      "github.com" = {
+        hostname = "github.com";
+        user = "git";
+        identityFile = [
+          "${sshConfigDir}/id_github"
+        ];
+      };
+    };
+  };
 
   # NOTE: macOS version upgrades reset '/etc/zshrc', which means that the shell
   # no longer "knows" how to source all Nix-related stuff.
