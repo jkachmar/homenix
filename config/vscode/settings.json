@@ -6,4 +6,5 @@
     "terminal.integrated.fontSize": 13,
     "update.mode": "none", // let Nix handle updates
     "telemetry.telemetryLevel": "off",
+    "haskell.upgradeGHCup": false,
 }
