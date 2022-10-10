@@ -2,10 +2,11 @@
   config,
   lib,
   pkgs,
+  unstable,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  myPlugins = pkgs.callPackage ./plugins.nix {};
+  myPlugins = unstable.callPackage ./plugins.nix {};
 in {
   # Lua needs a formatter.
   #
@@ -24,23 +25,22 @@ in {
     withPython3 = true;
 
     # Always pull the latest plugins.
-    plugins = with pkgs.vimPlugins;
-    with myPlugins; [
+    plugins = ((with unstable.vimPlugins; [
       # Language support.
       vim-nix
-      # UI.
-      everforest
-      gruvbox-material
-      lightline-vim
-      nvim-base16
-      oceanic-next
       # Misc. tooling.
       commentary
       direnv-vim
+      # UI
+      # TODO: switch to newer version of lualine
+      lualine-nvim
       # Version control.
-      # fugitive
+      fugitive
       gitgutter
-    ];
+    ]) ++ (with myPlugins; [
+      # UI.
+      gruvbox-material
+    ]));
 
     # Minimal init.lua to load Lua config.
     #

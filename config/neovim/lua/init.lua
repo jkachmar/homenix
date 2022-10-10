@@ -14,8 +14,6 @@ vim.cmd [[set cursorline]] -- Highlight the current cursor line.
 -- Gruvbox settings.
 vim.g.gruvbox_material_background = 'soft'
 vim.g.gruvbox_material_palette = 'original'
--- Everforest settings.
-vim.g.everforest_background = 'soft'
 -- Set theme.
 vim.opt.background = 'light'
 vim.cmd [[colorscheme gruvbox-material]]
@@ -23,14 +21,22 @@ vim.cmd [[colorscheme gruvbox-material]]
 -- Status bar.
 vim.cmd [[set noshowmode]] -- Use lightline to display the current mode.
 vim.opt.laststatus = 2
-vim.g.lightline = {
-    colorscheme = 'gruvbox_material',
-    active = {
-        left = {
-            {'mode', 'paste'}, {'gitbranch', 'readonly', 'filename', 'modified'}
-        }
+require('lualine').setup {
+  options = {
+    theme = "gruvbox-material",
+    globalstatus = true,
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
+
+    sections = {
+      lualine_a = {'mode', 'paste'},
+      lualine_b = {'fugitive#head', 'diff', 'diagnostics'},
+      lualine_c = {'filename'},
+      lualine_x = {'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'},
     },
-    component_function = {gitbranch = 'fugitive#head'}
+  }
 }
 
 ----------------------
