@@ -7,7 +7,6 @@
     #
     # NOTE: Use this pin sparingly! These packages are likely to not be cached
     # and can potentially result in very long rebuild times.
-    trunkPkgs.url = "github:nixos/nixpkgs/master";
     unstablePkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     macosPkgs.url = "github:nixos/nixpkgs/nixpkgs-22.05-darwin";
@@ -28,7 +27,6 @@
     macosHome,
     nixosPkgs,
     nixosHome,
-    trunkPkgs,
     unstablePkgs,
     ...
   }: let
@@ -47,7 +45,6 @@
         extraModules = [
           {
             _module.args.inputs = inputs;
-            _module.args.trunk = mkPkgsFor system trunkPkgs;
             _module.args.unstable = mkPkgsFor system unstablePkgs;
           }
         ];
@@ -68,7 +65,6 @@
         extraModules = [
           {
             _module.args.inputs = inputs;
-            _module.args.trunk = mkPkgsFor system trunkPkgs;
             _module.args.unstable = mkPkgsFor system unstablePkgs;
           }
         ];
