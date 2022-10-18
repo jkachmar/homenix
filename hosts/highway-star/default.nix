@@ -1,14 +1,28 @@
-{config, ...}: let
+{config, pkgs, ...}: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in {
   imports = [
     ../../config
   ];
 
-  # NOTE: True color detectio needs to be forced when editing over SSH.
-  #
-  # cf. https://github.com/helix-editor/helix/issues/2292#issuecomment-1110179773
-  programs.helix.settings.editor.true-color = true;
+  # NOTE: Works w/ the tmux config (below) to set the Okta auth stuff.
+  programs.bash.bashrcExtra = ''
+    if [ -n "$TMUX" ]; then
+      function refresh () {
+        eval $(tmux showenv -s)
+      }
+    else
+      function refresh () { :; }
+    fi
+  '';
+
+  programs.tmux = {
+    enable = true;
+    keyMode = "vi";
+    extraConfig = ''
+      set -g update-environment "SFT_AUTH_SOCK SSH_AUTH_SOCK SSH_CONNECTION DISPLAY"
+    '';
+  };
 
   xdg.configFile = {
     "containers/policy.json".source =
