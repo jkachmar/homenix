@@ -7,4 +7,5 @@
     "update.mode": "none", // let Nix handle updates
     "telemetry.telemetryLevel": "off",
     "haskell.upgradeGHCup": false,
+    "workbench.colorTheme": "Atom One Light",
 }
