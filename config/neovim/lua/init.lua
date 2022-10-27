@@ -21,22 +21,14 @@ vim.cmd [[colorscheme gruvbox-material]]
 -- Status bar.
 vim.cmd [[set noshowmode]] -- Use lightline to display the current mode.
 vim.opt.laststatus = 2
-require('lualine').setup {
-  options = {
-    theme = "gruvbox-material",
-    globalstatus = true,
-    component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
-
-    sections = {
-      lualine_a = {'mode', 'paste'},
-      lualine_b = {'fugitive#head', 'diff', 'diagnostics'},
-      lualine_c = {'filename'},
-      lualine_x = {'filetype'},
-      lualine_y = {'progress'},
-      lualine_z = {'location'},
-    },
-  }
+vim.g.lightline = {
+  colorscheme = 'gruvbox_material',
+  active = {
+    left = {
+      {'mode', 'paste'}, {'gitbranch', 'readonly', 'filename', 'modified'}
+    }
+  },
+  component_function = {gitbranch = 'fugitive#head'}
 }
 
 ----------------------

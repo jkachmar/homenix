@@ -25,22 +25,23 @@ in {
     withPython3 = true;
 
     # Always pull the latest plugins.
-    plugins = ((with unstable.vimPlugins; [
-      # Language support.
-      vim-nix
-      # Misc. tooling.
-      commentary
-      direnv-vim
-      # UI
-      # TODO: switch to newer version of lualine
-      lualine-nvim
-      # Version control.
-      fugitive
-      gitgutter
-    ]) ++ (with myPlugins; [
-      # UI.
-      gruvbox-material
-    ]));
+    plugins =
+      (with unstable.vimPlugins; [
+        # Language support.
+        vim-nix
+        # Misc. tooling.
+        commentary
+        direnv-vim
+        # UI
+        lightline-vim
+        # Version control.
+        fugitive
+        gitgutter
+      ])
+      ++ (with myPlugins; [
+        # UI.
+        gruvbox-material
+      ]);
 
     # Minimal init.lua to load Lua config.
     #

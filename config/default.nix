@@ -51,6 +51,7 @@
 
     git = {
       enable = true;
+      package = unstable.git; # git-2.38 (includes `scalar`)
       extraConfig = {
         core.editor = "vim";
         init.defaultBranch = "main";

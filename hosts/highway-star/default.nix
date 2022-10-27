@@ -1,4 +1,8 @@
-{config, pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 in {
   imports = [
@@ -21,6 +25,7 @@ in {
     keyMode = "vi";
     extraConfig = ''
       set -g update-environment "SFT_AUTH_SOCK SSH_AUTH_SOCK SSH_CONNECTION DISPLAY"
+      set -g mouse on
     '';
   };
 
