@@ -9,4 +9,5 @@
     "telemetry.telemetryLevel": "off",
     "haskell.upgradeGHCup": false,
     "workbench.colorTheme": "Atom One Light",
+    "files.insertFinalNewline": true,
 }
