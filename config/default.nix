@@ -15,7 +15,7 @@
     (with pkgs; [
       starship # XXX: Unclear why it's necessary to manually install this...
     ])
-    ++ (with unstable; [ ]);
+    ++ (with unstable; []);
 
   programs = {
     # Allow 'home-manager' to manage its own install.
@@ -51,6 +51,7 @@
       enableBashIntegration = config.programs.bash.enable;
       enableFishIntegration = config.programs.fish.enable;
       enableZshIntegration = config.programs.zsh.enable;
+      tmux.enableShellIntegration = config.programs.tmux.enable;
     };
 
     git = {
@@ -88,6 +89,11 @@
       enableBashIntegration = config.programs.bash.enable;
       enableFishIntegration = config.programs.fish.enable;
       enableZshIntegration = config.programs.zsh.enable;
+    };
+
+    tmux = {
+      enable = true;
+      keyMode = "vi";
     };
   };
 }

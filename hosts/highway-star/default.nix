@@ -30,14 +30,10 @@ in {
     };
   };
 
-  programs.tmux = {
-    enable = true;
-    keyMode = "vi";
-    extraConfig = ''
-      set -g update-environment "SFT_AUTH_SOCK SSH_AUTH_SOCK SSH_CONNECTION DISPLAY"
-      set -g mouse on
-    '';
-  };
+  programs.tmux.extraConfig = ''
+    set -g update-environment "SFT_AUTH_SOCK SSH_AUTH_SOCK SSH_CONNECTION DISPLAY"
+    set -g mouse on
+  '';
 
   xdg.configFile = {
     "containers/policy.json".source =
