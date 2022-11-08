@@ -20,6 +20,16 @@ in {
     fi
   '';
 
+  programs.starship.settings = {
+    # XXX: Removes trailing space.
+    gcloud.symbol = "☁️ ";
+    hostname = {
+      disabled = false;
+      format = "[$hostname-dev-vm](bold red) in ";
+      style = "bold green";
+    };
+  };
+
   programs.tmux = {
     enable = true;
     keyMode = "vi";
