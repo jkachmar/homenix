@@ -32,6 +32,15 @@ in {
     };
   };
 
+  # Fixes a bug where fish shell doesn't properly set up the nix path on macOS.
+  programs.fish.shellInit = ''
+    for p in /run/current-system/sw/bin ~/.nix-profile/bin
+      if not contains $p $fish_user_paths
+        set -g fish_user_paths $p $fish_user_paths
+      end
+    end
+  '';
+
   # NOTE: macOS version upgrades reset '/etc/zshrc', which means that the shell
   # no longer "knows" how to source all Nix-related stuff.
   #
