@@ -9,15 +9,15 @@
     # and can potentially result in very long rebuild times.
     unstablePkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    macosPkgs.url = "github:nixos/nixpkgs/nixpkgs-22.05-darwin";
+    macosPkgs.url = "github:nixos/nixpkgs/nixpkgs-22.11-darwin";
     macosHome = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "macosPkgs";
     };
 
-    nixosPkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixosPkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixosHome = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixosPkgs";
     };
   };
