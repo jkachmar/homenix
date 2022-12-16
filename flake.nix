@@ -39,42 +39,56 @@
       };
   in {
     homeConfigurations = {
-      manhattan-transfer = macosHome.lib.homeManagerConfiguration rec {
+      manhattan-transfer = let
         system = "aarch64-darwin";
-        pkgs = mkPkgsFor system macosPkgs;
-        extraModules = [
-          {
-            _module.args.inputs = inputs;
-            _module.args.unstable = mkPkgsFor system unstablePkgs;
-          }
-        ];
-
-        # NOTE: This changes pretty drastically in 22.11;
-        username = "jkachmar";
-        homeDirectory = "/Users/jkachmar";
-        stateVersion = "22.05";
-        configuration.imports = [./hosts/manhattan-transfer];
-      };
+      in
+        macosHome.lib.homeManagerConfiguration {
+          pkgs = mkPkgsFor system macosPkgs;
+          modules = [
+            # Inject 'inputs' & 'unstable' package set to common module imports.
+            {
+              _module.args.inputs = inputs;
+              _module.args.unstable = mkPkgsFor system unstablePkgs;
+            }
+            # Common 'home-manager' configuration or Linux hosts.
+            #
+            # TODO: Abstract this out into a module or function or something.
+            {
+              home.username = "jkachmar";
+              home.homeDirectory = "/Users/jkachmar";
+              home.stateVersion = "22.11";
+            }
+            # Entry point for this machine's config.
+            ./hosts/manhattan-transfer
+          ];
+        };
 
       # NOTE: $WORK configures my development VM automatically & assigns it a
       # hostname based off of my username, BUT it's important to keep this
       # config's naming scheme consistent (i.e. using JoJo stands).
-      jkachmar = nixosHome.lib.homeManagerConfiguration rec {
+      jkachmar = let
         system = "x86_64-linux";
-        pkgs = mkPkgsFor system nixosPkgs;
-        extraModules = [
-          {
-            _module.args.inputs = inputs;
-            _module.args.unstable = mkPkgsFor system unstablePkgs;
-          }
-        ];
-
-        # NOTE: This changes pretty drastically in 22.11;
-        username = "jkachmar";
-        homeDirectory = "/home/jkachmar";
-        stateVersion = "22.05";
-        configuration.imports = [./hosts/highway-star];
-      };
+      in
+        nixosHome.lib.homeManagerConfiguration {
+          pkgs = mkPkgsFor system nixosPkgs;
+          modules = [
+            # Inject 'inputs' & 'unstable' package set to common module imports.
+            {
+              _module.args.inputs = inputs;
+              _module.args.unstable = mkPkgsFor system unstablePkgs;
+            }
+            # Common 'home-manager' configuration or Linux hosts.
+            #
+            # TODO: Abstract this out into a module or function or something.
+            {
+              home.username = "jkachmar";
+              home.homeDirectory = "/home/jkachmar";
+              home.stateVersion = "22.11";
+            }
+            # Entry point for this machine's config.
+            ./hosts/highway-star
+          ];
+        };
     };
   };
 }
