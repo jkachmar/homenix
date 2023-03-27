@@ -1,3 +1,7 @@
+# Archived
+
+Development moved to https://github.com/jkachmar/morioh
+
 # I (Still!) Fucking Hate Dotfiles
 
 An attempt at a Nix-based scheme for managing my dotfiles that's a little more
